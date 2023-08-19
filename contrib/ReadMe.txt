@@ -1,0 +1,1 @@
+Examples: some demonstration of nographs usage, focused on graph processing and visualization (using GraphViz for latter, which require binaries install). 
