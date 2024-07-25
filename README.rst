@@ -62,10 +62,14 @@ Think of it as *graph analysis - the lazy (evaluation) way*.
 - Unidirectional traversal algorithms: DFS, BFS, topological search,
   Dijkstra, A\* and MST.
 - Bidirectional search algorithms: BFS and Dijkstra.
-- Results: Reachability, depth, distance, paths and trees.
+- Results: Reachability, depth, distance, and paths.
   Paths can be
   calculated with vertices, edges, or attributed edges,
   and can be iterated in both directions.
+  Additionally, for DFS:
+  forest, all kinds of edge types, both entering and leaving events,
+  and DFS tree edges or
+  all paths or all walks.
 - Flexible graph notion:
 
   - Infinite directed multigraphs with loops and
@@ -123,6 +127,21 @@ Think of it as *graph analysis - the lazy (evaluation) way*.
   adapting existing explicit test graphs a no brainer, may they be
   stored in edge indices or edge iterables
   or in arrays.
+
+**Examples with further algorithms**
+
+- Depth-limited search
+- Iterative deepening depth-first search
+- Critical path
+  in a weighted, acyclic graph
+- Longest path
+  between two vertices in a weighted, acyclic graph
+- Longest path
+  between two vertices in a weighted graph or in an unweighted graph
+- Strongly connected components
+  of a graph
+- Biconnected components of a connected undirected graph
+
 
 **Example**
 

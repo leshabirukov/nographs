@@ -24,8 +24,7 @@ def adapt_edge_index(
     *,
     add_inverted: bool,
     attributes: Literal[False],
-) -> Callable[[T_vertex, Any], Iterable[T_vertex]]:
-    ...
+) -> Callable[[T_vertex, Any], Iterable[T_vertex]]: ...
 
 
 @overload
@@ -34,8 +33,7 @@ def adapt_edge_index(
     *,
     add_inverted: bool,
     attributes: Literal[True],
-) -> Callable[[T_vertex, Any], Iterable[OutEdge[T_vertex, T_weight, T_labels]]]:
-    ...
+) -> Callable[[T_vertex, Any], Iterable[OutEdge[T_vertex, T_weight, T_labels]]]: ...
 
 
 @overload
@@ -44,8 +42,7 @@ def adapt_edge_index(
     *,
     add_inverted: bool,
     attributes: Literal[False],
-) -> Callable[[int, Any], Iterable[T_vertex]]:
-    ...
+) -> Callable[[int, Any], Iterable[T_vertex]]: ...
 
 
 @overload
@@ -54,8 +51,7 @@ def adapt_edge_index(
     *,
     add_inverted: bool,
     attributes: Literal[True],
-) -> Callable[[int, Any], Iterable[OutEdge[int, T_weight, T_labels]]]:
-    ...
+) -> Callable[[int, Any], Iterable[OutEdge[int, T_weight, T_labels]]]: ...
 
 
 def adapt_edge_index(
@@ -155,8 +151,7 @@ def adapt_edge_iterable(
     *,
     add_inverted: bool,
     attributes: Literal[False],
-) -> Callable[[T_vertex, Any], Iterable[T_vertex]]:
-    ...
+) -> Callable[[T_vertex, Any], Iterable[T_vertex]]: ...
 
 
 @overload
@@ -165,8 +160,7 @@ def adapt_edge_iterable(
     *,
     add_inverted: bool,
     attributes: Literal[True],
-) -> Callable[[T_vertex, Any], Iterable[OutEdge[T_vertex, T_weight, T_labels]]]:
-    ...
+) -> Callable[[T_vertex, Any], Iterable[OutEdge[T_vertex, T_weight, T_labels]]]: ...
 
 
 def adapt_edge_iterable(
@@ -212,7 +206,7 @@ def adapt_edge_iterable(
         else:
             # Only start and end vertices of the edge should be used. Optional
             # additional data is ignored.
-            for from_vertex, to_vertex, *data in edges:
+            for from_vertex, to_vertex, *_data in edges:
                 edge_dict[from_vertex].append(to_vertex)
                 edge_dict[to_vertex].append(from_vertex)
             return adapt_edge_index(edge_dict, add_inverted=False, attributes=False)
