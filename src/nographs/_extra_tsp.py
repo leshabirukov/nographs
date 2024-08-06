@@ -13,10 +13,7 @@ from ._gears import (
     Gear,
     GearDefault,
 )
-from ._bidir_search import (
-    BSearchShortestPathFlex,
-)
-
+from ._strategies import BSearchShortestPathFlex
 
 # -- Protocols --
 T_key_contra = TypeVar("T_key_contra", contravariant=True)
@@ -102,7 +99,7 @@ def undo_weight_changes_in_travel_length(
     # no_of_edges times.
     # (We have no multiplication in T_weight, so we repeat a subtraction. But since we
     # do this only once per vertex in the path, the additional runtime does not matter.)
-    for i in range(no_of_edges):
+    for _i in range(no_of_edges):
         length -= weight_offset
     # Undo the negation of the edge weights. We can do this in one step for the whole
     # path length.
@@ -198,9 +195,11 @@ def _traveling_salesman_int_vertices(
     # Pack transformed edge weights in nested tuples
     graph_forwards = tuple(
         tuple(
-            None
-            if (weight := graph[v][w]) is None
-            else (zero - weight if negate_weights else weight) + weight_offset
+            (
+                None
+                if (weight := graph[v][w]) is None
+                else (zero - weight if negate_weights else weight) + weight_offset
+            )
             for w in range(no_of_vertices)
         )
         for v in range(no_of_vertices)
@@ -209,9 +208,11 @@ def _traveling_salesman_int_vertices(
     # The same, but for for incoming (!) edges of some vertex
     graph_backwards = tuple(
         tuple(
-            None
-            if (weight := graph[w][v]) is None
-            else (zero - weight if negate_weights else weight) + weight_offset
+            (
+                None
+                if (weight := graph[w][v]) is None
+                else (zero - weight if negate_weights else weight) + weight_offset
+            )
             for w in range(no_of_vertices)
         )
         for v in range(no_of_vertices)
@@ -244,9 +245,12 @@ def _traveling_salesman_int_vertices(
         functools.reduce(
             operator.or_,
             (
-                1 << to_vertex
-                if from_vertex != to_vertex and edges_from_vertex[to_vertex] is not None
-                else 0
+                (
+                    1 << to_vertex
+                    if from_vertex != to_vertex
+                    and edges_from_vertex[to_vertex] is not None
+                    else 0
+                )
                 for to_vertex in range(no_of_vertices)
             ),
             0,
@@ -261,9 +265,12 @@ def _traveling_salesman_int_vertices(
         functools.reduce(
             operator.or_,
             (
-                1 << to_vertex
-                if from_vertex != to_vertex and edges_from_vertex[to_vertex] is not None
-                else 0
+                (
+                    1 << to_vertex
+                    if from_vertex != to_vertex
+                    and edges_from_vertex[to_vertex] is not None
+                    else 0
+                )
                 for to_vertex in range(no_of_vertices)
             ),
             0,

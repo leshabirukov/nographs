@@ -5,9 +5,7 @@ Bidirectional search algorithms
    Import nographs for doctests of this document. Does not go into docs.
    >>> import nographs as nog
 
-.. versionchanged:: 3.1
-
-   Bidirectional search algorithms added.
+.. versionadded:: 3.1
 
 The analysis algorithms `presented so far <traversals>` traverse a graph
 in "forward" direction, i.e., they start from one or more start vertices, follow the
@@ -212,7 +210,7 @@ Then, we do the same again, but we use the bidirectional search strategy
    >>> print(f"{length=}, {evaluated_positions=}")
    length=58, evaluated_positions=68
 
-Again, of cause, we get the same path length in both cases.
+Again, of course, we get the same path length in both cases.
 But **the bidirectional search regards only 68 positions** before it finds an
 optimal solution, whilst **the unidirectional search regards 257 positions**.
 
